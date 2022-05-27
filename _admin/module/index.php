@@ -1,7 +1,7 @@
 <?php
 class index{
 	function actionIndex(){
-		header("Location:./?m=site&a=Index");
+		header("Location:/_admin/?m=site&a=Index");
 		exit();
 		//include tpl('index');
 	}
@@ -9,18 +9,18 @@ class index{
 	function actionLogin(){
 		if($_SERVER['REQUEST_METHOD'] == "POST"){
 			if(d('config')->get('password')==$_POST['password']){
-				$_SESSION['logined']=true;
-				header("Location:./?m=site&a=index");
+				$_SESSION['Jzb6spHwTmm2LUkMPAk2H1uCRhoA']=true;
+				header("Location:/_admin/?m=site&a=index");
 				exit();
 			}
-			echo "ÃÜÂë´íÎó";
+			echo "å¯†ç é”™è¯¯";
 		}
 		include tpl('login');
 	}
 	
 	function actionLogout(){
-		unset($_SESSION['logined']);
-		header("Location:./");
+		unset($_SESSION['Jzb6spHwTmm2LUkMPAk2H1uCRhoA']);
+		header("Location:/_admin");
 		exit();
 	}
 }

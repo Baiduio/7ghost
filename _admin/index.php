@@ -1,18 +1,18 @@
 <?php
-	header('Content-Type: text/html; charset=gbk');
+	header('Content-Type: text/html; charset=utf8');
 	/**
-	 * Èë¿ÚÎÄ¼þ
+	 * å…¥å£æ–‡ä»¶
 	 */
 	//error_reporting(0);
 	$_GET['m'] = empty($_GET['m'])?'index':$_GET['m'];
-	 //ÅÐ¶ÏÀàÐÍ
+	 //åˆ¤æ–­ç±»åž‹
 	include_once ('./init.php');
 	if(!ctype_alnum($_GET['m'])){
 		echo 'm error';exit;
 	}
 	session_start();
-	//ÅÐ¶ÏÊÇ·ñµÇÂ¼
-	if(empty($_SESSION['logined'])){
+	//åˆ¤æ–­æ˜¯å¦ç™»å½•
+	if(empty($_SESSION['Jzb6spHwTmm2LUkMPAk2H1uCRhoA'])){
 		include ('./module/index.php');
 		$m = new index();
 		$m->actionLogin();

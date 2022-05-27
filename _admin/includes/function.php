@@ -1,9 +1,9 @@
 <?php
-//ÊäÈë
+//è¾“å…¥
 function _e($str){
 	echo $str;
 }
-//Ä£°æ
+//æ¨¡ç‰ˆ
 function tpl($name){
 	return ADIR.'template/'.$name.'.php';
 }
@@ -21,7 +21,7 @@ function d($name){
     }
     return $instance[$name];
 }
-//´¦Àí±äÁ¿
+//å¤„ç†å˜é‡
 /**
  * {g:a} = $_GET['a']
  * {p:a} = $_POST['a']
@@ -138,7 +138,7 @@ function get_ip(){
     return $ip;   
 }
 /**
- * mdir¼ÓÇ¿°æ,Ö§³Ö¶àÖØÎÄ¼þ¼Ð½¨Á¢
+ * mdiråŠ å¼ºç‰ˆ,æ”¯æŒå¤šé‡æ–‡ä»¶å¤¹å»ºç«‹
 */
 function mdir2($path){
 	$path2 = $path;
@@ -153,7 +153,7 @@ function mdir2($path){
 }
 
 /**
- * ±£´æÎÄ¼þ
+ * ä¿å­˜æ–‡ä»¶
  */
 function save_file($filename,$data){
 	$pathinfo = pathinfo($filename);

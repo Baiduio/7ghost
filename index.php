@@ -1,14 +1,14 @@
 <?php
 	//error_reporting(0);
 	require './_admin/init.php';
-	//¶ÁÈ¡ÅäÖÃĞÅÏ¢
+	//è¯»å–é…ç½®ä¿¡æ¯
 	$config  = d('config')->get();
 	
-	//µ±Ç°¸ùurl
+	//å½“å‰æ ¹url
 	$rootUrl = 'http://'.$_SERVER['HTTP_HOST'].siteUri();
 	$snoopy = new Snoopy();
 	$uri = substr($_SERVER['REQUEST_URI'],strlen(siteUri()));
-	//Æ¥Åä×Ô¶¨ÒåÒ³Ãæ£¬ºÏ²¢²ÎÊı
+	//åŒ¹é…è‡ªå®šä¹‰é¡µé¢ï¼Œåˆå¹¶å‚æ•°
 	foreach($config['pages'] as $page){
 		if(@ereg($page['uri'],$uri)){
 			if(!empty($page['replaces'])){
@@ -24,107 +24,108 @@
 			break;
 		}
 	}
-	//»ñÈ¡ÒªÇëÇóµÄurl
+	//è·å–è¦è¯·æ±‚çš„url
 	$url = $config['host'].$uri;
-	//µ±Ç°ÇëÇóµÄÎÄ¼şºó×º
+	//å½“å‰è¯·æ±‚çš„æ–‡ä»¶åç¼€
 	$thisExt = pathinfo($_SERVER['PATH_INFO'],PATHINFO_EXTENSION);
-	//¾²Ì¬ÎÄ¼ş
+	//é™æ€æ–‡ä»¶
 	if(in_array($thisExt,explode("|",$config['diyStatic']))){
 		$filename = dirname(ADIR).'/'.substr($_SERVER['REDIRECT_URL'],strlen(siteUri()));
-		//Èç¹û´æÔÚ£¬Ö±½ÓÊä³ö
+		//å¦‚æœå­˜åœ¨ï¼Œç›´æ¥è¾“å‡º
 		if(is_file($filename)){
 			echo file_get_contents($filename);
 			exit();
 		}
 	}
-//-------------ÉèÖÃÇëÇóÍ·ĞÅÏ¢------------
-	//ÉèÖÃcookie
+//-------------è®¾ç½®è¯·æ±‚å¤´ä¿¡æ¯------------
+	//è®¾ç½®cookie
 	switch($config['cookies']){
-		case 1://È«¾Öcookies
+		case 1://å…¨å±€cookies
 			$snoopy->cookies = get_cache('cookies');
 			break;
-		case 2://×Ô¶¨ÒåCOOKIES
+		case 2://è‡ªå®šä¹‰COOKIES
 			$snoopy->cookies = $config['diyCookies'];
 			break;
-		default://´«Í³cookies
+		default://ä¼ ç»Ÿcookies
 			$snoopy->cookies = $_COOKIE;
 			break;
 	}
 	
-	//ÉèÖÃagent
+	//è®¾ç½®agent
 	switch($config['agent']){
-		case 1://²»Î±Ôì
+		case 1://ä¸ä¼ªé€ 
 			break;
-		case 2://×Ô¶¨Òåagent
+		case 2://è‡ªå®šä¹‰agent
 			$snoopy->agent = $config['diyAgent'];
 			break;
-		default://Ê¹ÓÃ¿Í»§¶Ëagent
+		default://ä½¿ç”¨å®¢æˆ·ç«¯agent
 			$snoopy->agent = $_SERVER['HTTP_USER_AGENT'];
 			break;
 	}
 	
 	
-	//ÉèÖÃreferer
+	//è®¾ç½®referer
 	switch($config['referer']){
-		case 1://×Ô¶¨Òåreferer
+		case 1://è‡ªå®šä¹‰referer
 			$snoopy->referer = $config['diyReferer'];;
 			break;
-		default://×Ô¶¯Î±Ôì
-			$snoopy->referer = str_replace($rootUrl,$config['host'],$_SERVER['HTTP_REFERER']);
-			if($snoopy->referer==$_SERVER['HTTP_REFERER'])
+		default://è‡ªåŠ¨ä¼ªé€ 
+			$HTTP_REFERER="";
+			$snoopy->referer = str_replace('rootUrl',$config['host'],$_SERVER[$HTTP_REFERER]);
+			if($snoopy->referer==$_SERVER[$HTTP_REFERER])
 			$snoopy->referer = '';
 			break;
 	}
 	
-	//ÉèÖÃip
+	//è®¾ç½®ip
 	switch($config['ip']){
-		case 1://Ê¹ÓÃ¿Í»§¶Ëip
-			$snoopy->rawheaders["X_FORWARDED_FOR"] = get_ip(); //Î±×°ip 
+		case 1://ä½¿ç”¨å®¢æˆ·ç«¯ip
+			$snoopy->rawheaders["X_FORWARDED_FOR"] = get_ip(); //ä¼ªè£…ip 
 			break;
-		case 2://×Ô¶¨Òåip
+		case 2://è‡ªå®šä¹‰ip
 			$snoopy->referer = $config['diyReferer'];;
 			break;
-		default://Ê¹ÓÃ·şÎñÆ÷ip
+		default://ä½¿ç”¨æœåŠ¡å™¨ip
 			break;
 	}
 	
-	//-------ÆäËûÍ·ĞÅÏ¢ begin--
+	//-------å…¶ä»–å¤´ä¿¡æ¯ begin--
 	
-	//-------ÆäËûÍ·ĞÅÏ¢ end----
+	//-------å…¶ä»–å¤´ä¿¡æ¯ end----
 	
-	//ÊÇ·ñ²¹È«Á´½Ó
+	//æ˜¯å¦è¡¥å…¨é“¾æ¥
 	$snoopy->expandlinks = true;
 	
-//--------------×¥È¡ÍøÒ³-----------------
-	//ÅĞ¶ÏÊÇPOST»¹ÊÇGET
+//--------------æŠ“å–ç½‘é¡µ-----------------
+	//åˆ¤æ–­æ˜¯POSTè¿˜æ˜¯GET
 	
 	if($_SERVER['REQUEST_METHOD']=="POST"){
 		$snoopy->submit($url,$_POST);
 	}else{
 		$snoopy->fetch($url);
 	}
-//---------------´¦Àí·µ»ØĞÅÏ¢------------
-		//ÉèÖÃcookie
+//---------------å¤„ç†è¿”å›ä¿¡æ¯------------
+		//è®¾ç½®cookie
 	switch($config['cookies']){
-		case 1://È«¾Öcookies
+		case 1://å…¨å±€cookies
 			$snoopy->cookies = set_cache('cookies');
 			break;
 		default:
 			break;
 	}
-	$contentType = send_header($snoopy->headers);
+	$contentType = send_header($snoopy);
 	$charset = empty($contentType[1])?'utf-8':$contentType[1];
 	$charset = trim($charset,"\n\r");
 	
-	//Ìæ»»ÓòÃû relativeHTML relativeCSS
+	//æ›¿æ¢åŸŸå relativeHTML relativeCSS
 	if(empty($config['replaceDomain'])){
 		if(in_array($thisExt,array('','php','html'))){
-			//Ìæ»»ÓòÃû
+			//æ›¿æ¢åŸŸå
 			$snoopy->results = str_replace($config['host'],$rootUrl,$snoopy->results);
 		}
 	}
 	
-	//Ìæ»»Ïà¶ÔµØÖ·relativeHTML
+	//æ›¿æ¢ç›¸å¯¹åœ°å€relativeHTML
 	if(empty($config['replaceDomain'])){
 		if(in_array($thisExt,array('','php','html'))){
 			$snoopy->results = str_replace('="/','="'.siteUri(),$snoopy->results);
@@ -133,14 +134,14 @@
 		}
 	}
 	
-	//Ìæ»»CSSÏà¶ÔµØÖ·
+	//æ›¿æ¢CSSç›¸å¯¹åœ°å€
 	if(empty($config['relativeCSS'])){
 		if(in_array($thisExt,array('css'))){
 			$snoopy->results = str_replace('url("/','url("'.siteUri(),$snoopy->results);
 		}
 	}
 	
-	//ÄÚÈİÌæ»»
+	//å†…å®¹æ›¿æ¢
 	if(is_array($config['replaces'])&&!empty($config['replaces']))
 	
 	foreach($config['replaces'] as $replace){
@@ -149,17 +150,17 @@
 		$snoopy->results = preg_replace('/'.$seach.'/',$replace,$snoopy->results);
 	}
 	
-	//Ä£°æ
+	//æ¨¡ç‰ˆ
 	if(!empty($config['template'])){
 		@include(ADIR.'data/tpl/'.$config['template']);
 		exit();
 	}
-	//¾²Ì¬ÎÄ¼ş
+	//é™æ€æ–‡ä»¶
 	if(in_array($thisExt,explode("|",$config['diyStatic']))){
 		$filename = dirname(ADIR).'/'.substr($_SERVER['REDIRECT_URL'],strlen(siteUri()));
 		save_file($filename,$snoopy->results);
 	}
 	
-	//Êä³ö
+	//è¾“å‡º
 	echo $snoopy->results;
 	//echo htmlspecialchars($snoopy->results);

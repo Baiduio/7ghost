@@ -1239,7 +1239,12 @@ class Snoopy
 		switch ($this->_submit_type) {
 			case "application/x-www-form-urlencoded":
 				reset($formvars);
-				while(list($key,$val) = each($formvars)) {
+				//while (list($key, $val) = each($para)) {  }
+				//foreach ($para as $key => $val) {  }
+				//while(list($key,$val) = each($formvars)) 
+				foreach ($formvars as $key => $val)
+				{
+					
 					if (is_array($val) || is_object($val)) {
 						while (list($cur_key, $cur_val) = each($val)) {
 							$postdata .= urlencode($key)."[]=".urlencode($cur_val)."&";
