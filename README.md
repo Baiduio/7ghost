@@ -1,7 +1,10 @@
-# 7ghost
-
+# 7克隆 （7Gost）
 * 7ghost是一款基于PHP的网站反向代理程序。能够快速高效的反向代理所指定的网站。
 * 并拥有丰富的内容替换、请求头设置。让没有主机的朋友也可以反向代理和加速你的网站。
+---
+## 运行图
+[![admin.md.png](https://i1.wp.com/www.hostpic.org/images/2205281125040083.png)]()
+[![admin.md.png](https://inews.gtimg.com/newsapp_ls/0/14949726803/0)]()
 
 ## 功能
 * 指定网站完全代理
@@ -20,9 +23,9 @@
  * 最低PHP版本不应低于PHP5.4
 
 ## 说明
-* 后台地址为：**\_admin\**
-* 默认登录密码：**123456**
-* 可编辑: **\_admin\data\config.php** 修改。
+* 后台地址为：<br>\_admin\</br>
+* 默认登录密码：<br>123456</br>
+* 可编辑: <br>\_admin\data\config.php</br> 修改。
 
 ## 更新预告
 * 3.0.0.1版本
