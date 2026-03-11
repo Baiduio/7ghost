@@ -62,7 +62,7 @@ class data{
 	 * @return mixed
 	 */
 	function get($key=""){
-		return empty($key)?$this->_data:$this->_data[$key];
+		return empty($key)?$this->_data:(isset($this->_data[$key])?$this->_data[$key]:null);
 	}
 	
 	/**

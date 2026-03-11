@@ -1,6 +1,7 @@
 <?php
 	function createMenu($name,$url){
 		$now = "./?m=".$_GET['m']."&a=".$_GET['a'];
+		$section = '';
 		if($url==$now)
 			$section = 'class="section"';
 		echo "<li><a href='$url' $section>$name</a></li>";
@@ -10,30 +11,30 @@
 		<div id="nav">
 			<ul class="dashboard main">
 				<li>
-					<span>È«¾Ö</span>
+					<span>å…¨å±€</span>
 					<ul>
 						<?php
-							createMenu('»ù±¾ÉèÖÃ','./?m=site&a=Index');
-							createMenu('¸ß¼¶ÉèÖÃ','./?m=site&a=Advanced');
-							createMenu('ÄÚÈÝÌæ»»','./?m=site&a=Replace');
+							createMenu('åŸºæœ¬è®¾ç½®','./?m=site&a=Index');
+							createMenu('é«˜çº§è®¾ç½®','./?m=site&a=Advanced');
+							createMenu('å†…å®¹æ›¿æ¢','./?m=site&a=Replace');
 						?>
 					</ul>
 				</li>
 				<li>
-					<span>×Ô¶¨ÒåÒ³Ãæ</span>
+					<span>è‡ªå®šä¹‰é¡µé¢</span>
 					<ul>
 						<?php
-							createMenu('×Ô¶¨ÒåÒ³Ãæ','./?m=page&a=Index');
-							createMenu('Ìí¼Ó×Ô¶¨ÒåÒ³Ãæ','./?m=page&a=Edit');
+							createMenu('è‡ªå®šä¹‰é¡µé¢','./?m=page&a=Index');
+							createMenu('æ·»åŠ è‡ªå®šä¹‰é¡µé¢','./?m=page&a=Edit');
 						?>
 					</ul>
 				</li>
 				<!--
 				<li>
-					<span>Ò³ÃæÓ³Éä</span>
+					<span>é¡µé¢æ˜ å°„</span>
 				</li>
 				<li>
-					<span>°ïÖú</span>
+					<span>å¸®åŠ©</span>
 				</li>
 				-->
 			</ul>

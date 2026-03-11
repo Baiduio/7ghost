@@ -4,6 +4,7 @@ class page{
 		if($_SERVER['REQUEST_METHOD'] == "POST"){
 			$msg = $this->setPage();
 		}
+		$item = array();
 		include tpl('pageList');
 	}
 		
@@ -13,10 +14,11 @@ class page{
 			header("Location:./?m=page&a=Index");
 		}
 		
-		if(is_numeric($_GET['key'])){
+		$key = isset($_GET['key']) && is_numeric($_GET['key']) ? $_GET['key'] : '';
+		$item = array();
+		if($key){
 			$pages = d('config')->get('pages');
-			$key = $_GET['key'];
-			$item = $pages[$key];
+			$item = isset($pages[$key]) ? $pages[$key] : array();
 		}
 		include tpl('editPage');
 	}
@@ -32,14 +34,19 @@ class page{
 	}
 	
 	function actionAdvanced(){
-		if(!is_numeric($_GET['key'])){
-			exit('error');
+		if(!isset($_GET['key']) || !is_numeric($_GET['key'])){
+			header("Location:./?m=page&a=Index");
+			exit;
 		}
 		if($_SERVER['REQUEST_METHOD'] == "POST"){
 			$msg = $this->setAdvanced();
 		}
 		$key = $_GET['key'];
 		$pages = d('config')->get('pages');
+		if(!isset($pages[$key])){
+			header("Location:./?m=page&a=Index");
+			exit;
+		}
 		$page = $pages[$key];
 		include tpl('pageAdvanced');
 	}
@@ -48,23 +55,38 @@ class page{
 		if($_SERVER['REQUEST_METHOD'] == "POST"){
 			$msg = $this->setReplace();
 		}
-		if(!is_numeric($_GET['key'])){
-			exit('error');
+		if(!isset($_GET['key']) || !is_numeric($_GET['key'])){
+			header("Location:./?m=page&a=Index");
+			exit;
 		}
 		$key = $_GET['key'];
 		$pages = d('config')->get('pages');
+		if(!isset($pages[$key])){
+			header("Location:./?m=page&a=Index");
+			exit;
+		}
 		$page = $pages[$key];
 		include tpl('pageReplace');
 	}
 	
 	function actionEditReplace(){
-		if(!is_numeric($_GET['key'])){
-			exit('error');
+		if(!isset($_GET['key']) || !is_numeric($_GET['key'])){
+			header("Location:./?m=page&a=Index");
+			exit;
 		}
 		
 		$pages = d('config')->get('pages');
 		$key = $_GET['key'];
+		if(!isset($pages[$key])){
+			header("Location:./?m=page&a=Index");
+			exit;
+		}
 		$page = $pages[$key];
+		$item = array();
+		if(!isset($_GET['rekey']) || !isset($page['replaces']) || !isset($page['replaces'][$_GET['rekey']])){
+			header("Location:./?m=page&a=replace&key=$key");
+			exit;
+		}
 		$item = $page['replaces'][$_GET['rekey']];
 		
 		if($_SERVER['REQUEST_METHOD'] == "POST"){
@@ -75,15 +97,21 @@ class page{
 	}
 	
 	function actionDelReplace(){
-		if(!is_numeric($_GET['key'])){
-			exit('error');
+		if(!isset($_GET['key']) || !is_numeric($_GET['key'])){
+			header("Location:./?m=page&a=Index");
+			exit;
 		}
-		if(!is_numeric($_GET['rekey'])){
-			exit('error');
+		if(!isset($_GET['rekey']) || !is_numeric($_GET['rekey'])){
+			header("Location:./?m=page&a=replace&key=$_GET[key]");
+			exit;
 		}
 		
 		$pages = d('config')->get('pages');
 		$key = $_GET['key'];
+		if(!isset($pages[$key]) || !isset($pages[$key]['replaces']) || !isset($pages[$key]['replaces'][$_GET['rekey']])){
+			header("Location:./?m=page&a=replace&key=$key");
+			exit;
+		}
 		$page = $pages[$key];
 		unset($page['replaces'][$_GET['rekey']]);
 		$pages[$key]=$page;
@@ -93,11 +121,17 @@ class page{
 	}
 	
 	function setAdvanced(){
-		if(!is_numeric($_GET['key'])){
-			exit('error');
+		if(!isset($_GET['key']) || !is_numeric($_GET['key'])){
+			header("Location:./?m=page&a=Index");
+			exit;
 		}
-		$key = $_GET['key'];
+		
 		$pages = d('config')->get('pages');
+		$key = $_GET['key'];
+		if(!isset($pages[$key])){
+			header("Location:./?m=page&a=Index");
+			exit;
+		}
 		$page = $pages[$key];
 		
 		$page['cookies']=$_POST['cookies'];
@@ -136,8 +170,9 @@ class page{
 	}
 
 	function setReplace(){
-		if(!is_numeric($_GET['key'])){
-			exit('error');
+		if(!isset($_GET['key']) || !is_numeric($_GET['key'])){
+			header("Location:./?m=page&a=Index");
+			exit;
 		}
 		
 		$item['name'] = $_POST['name'];
@@ -145,7 +180,12 @@ class page{
 		$item['replace'] = $_POST['replace'];
 		
 		$pages = d('config')->get('pages');
-		$replaces = $pages[$_GET['key']]['replaces'];
+		$key = $_GET['key'];
+		if(!isset($pages[$key])){
+			header("Location:./?m=page&a=Index");
+			exit;
+		}
+		$replaces = isset($pages[$key]['replaces']) ? $pages[$key]['replaces'] : array();
 
 		if(is_numeric($_POST['rekey'])){
 			$replaces[$_POST['rekey']] = $item;

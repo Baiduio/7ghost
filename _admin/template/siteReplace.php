@@ -3,39 +3,39 @@
 	<div class="main">
 		<div class="mside side" style="width:316px;padding-right:10px;">
 			<form action="" method="POST">
-				<h2 class="section-header">Ìí¼ÓÄÚÈÝÌæ»»</h2>
+				<h2 class="section-header">æ·»åŠ å†…å®¹æ›¿æ¢</h2>
 				<?php
-					w('text')->set('name','Ãû³Æ')
+					w('text')->set('name','åç§°')
 							->set('key','name')
-							->set('tipe','½ö·½±ã¼ÇÒä')
+							->set('tipe','ä»…æ–¹ä¾¿è®°å¿†')
 							->e();
 			
-					w('text')->set('name','²éÕÒÄÚÈÝ')
+					w('text')->set('name','æŸ¥æ‰¾å†…å®¹')
 							->set('key','seach')
-							->set('tipe','²éÕÒÐèÒªÌæ»»µÄÄÚÈÝ,ÎªÕýÔòÆ¥Åä')
+							->set('tipe','æŸ¥æ‰¾éœ€è¦æ›¿æ¢çš„å†…å®¹,ä¸ºæ­£åˆ™åŒ¹é…')
 							->e();
 					
-					w('textarea')->set('name','Ìæ»»Îª')
+					w('textarea')->set('name','æ›¿æ¢ä¸º')
 							->set('key','replace')
-							->set('tipe','½«²éÕÒµ½µÄÄÚÈÝÌæ»»Îª')
+							->set('tipe','å°†æŸ¥æ‰¾åˆ°çš„å†…å®¹æ›¿æ¢ä¸º')
 							->e();
 				?>
-				<input type="submit" class="m-button" value="Ìá½»" id="submit">
+				<input type="submit" class="m-button" value="æäº¤" id="submit">
 			</form>
 		</div>
 		<div class="main">
-			<h2 class="section-header">ÄÚÈÝÌæ»»ÁÐ±í</h2>
+			<h2 class="section-header">å†…å®¹æ›¿æ¢åˆ—è¡¨</h2>
 			<table class="ae-table ae-table-striped ae-quota-requests">
 	        <thead>
 	            <tr>
 	                <th width="35%">
-	                    Ãû³Æ
+	                    åç§°
 	                </th>
 	                <th>
-	                    ²éÕÒ
+	                    æŸ¥æ‰¾
 	                </th>
 	                <th>
-	                    Ìæ»»Îª
+	                    æ›¿æ¢ä¸º
 	                </th>
 	            </tr>
 	        </thead>
@@ -54,11 +54,11 @@
 	        	<tr <?php _e($i);?>>
 	                <td>
 	                	<div class="row-title">
-		                    <a href="./?m=site&a=EditReplace&key=<?php _e($key)?>" title="±à¼­<?php _e($item['name'])?>"><?php _e($item['name'])?></a>
+		                    <a href="./?m=site&a=EditReplace&key=<?php _e($key)?>" title="ç¼–è¾‘<?php _e($item['name'])?>"><?php _e($item['name'])?></a>
 	                	</div>
 	                    <div class="row actions">
-	                        <span><a href="./?m=site&a=editReplace&key=<?php _e($key)?>">±à¼­</a> | </span>
-	                        <span><a href="./?m=site&a=delReplace&key=<?php _e($key)?>">É¾³ý</a></span>
+	                        <span><a href="./?m=site&a=editReplace&key=<?php _e($key)?>">ç¼–è¾‘</a> | </span>
+	                        <span><a href="./?m=site&a=delReplace&key=<?php _e($key)?>">åˆ é™¤</a></span>
 	                    </div>
 	                </td>
 	                <td>
@@ -74,13 +74,13 @@
 	            </tbody><tfoot>
 		            <tr>
 		                <td width="35%">
-		                    Ãû³Æ
+		                    åç§°
 		                </td>
 		                <td>
-		                    ²éÕÒ
+		                    æŸ¥æ‰¾
 		                </td>
 		                <td>
-		                    Ìæ»»Îª
+		                    æ›¿æ¢ä¸º
 		                </td>
 		            </tr>
 	            </tfoot>

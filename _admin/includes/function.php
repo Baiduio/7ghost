@@ -16,10 +16,10 @@ function w($name){
 function d($name){
 	require_once(ADIR.'includes/data.php');
 	static $instance=array();
-    if (!isset($instance[$name]) && preg_match("/^[a-z|0-9|A-Z|_]+$",$name)){
-    	return $instance[$name] = new data($name);
+    if (!isset($instance[$name]) && preg_match('/^[a-z0-9A-Z_]+$/',$name)){
+    	$instance[$name] = new data($name);
     }
-    return $instance[$name];
+    return isset($instance[$name]) ? $instance[$name] : null;
 }
 //处理变量
 /**
@@ -56,7 +56,7 @@ function siteUri(){
 }
 	
 function send_header($headers,$cookies=1){
-	$return;
+	$return = array();
 	if(is_array($headers))
 	foreach($headers as $value){
 		$arr=explode(": ",$value);
@@ -65,7 +65,7 @@ function send_header($headers,$cookies=1){
 			header($value);
 		}else{
 			if($cookies){
-				$arr=explode(";",$arr[1]);
+				$arr=explode("; ",$arr[1]);
 				$arr_value = explode("=",$arr[0]);
 				setcookie($arr_value[0],$arr_value[1]);
 			}

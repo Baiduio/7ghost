@@ -2,69 +2,69 @@
 <?php include tpl('menu');?>
 	<div class="main">
 		<form action="" method="POST">
-		<h2 class="section-header">×Ô¶¨ÒåCOOKIES</h2>
+		<h2 class="section-header">è‡ªå®šä¹‰COOKIES</h2>
 		<?php
-			w('select')->set('name','COOKIESÉèÖÃ')
+			w('select')->set('name','COOKIESè®¾ç½®')
 					->set('key','cookies')
 					->set('value',d('config')->get('cookies'))
-					->set('options',array('´«Í³cookies'=>'0','È«¾Öcookies'=>'1','×Ô¶¨Òåcookies'=>'2',))
-					->set('tipe','´«Í³cookiesÄÜ±£Ö¤Ã¿¸ö·Ã¿ÍÒ»¸öcookies£¬È«¾ÖcookiesÔòÊÇËùÓĞ·Ã¿ÍÒ»¸öcookies£¬×Ô¶¨ÒåcookiesÔòcookies½«²»»á±ä»¯')
+					->set('options',array('ä¼ ç»Ÿcookies'=>'0','å…¨å±€cookies'=>'1','è‡ªå®šä¹‰cookies'=>'2',))
+					->set('tipe','ä¼ ç»Ÿcookiesèƒ½ä¿è¯æ¯ä¸ªè®¿å®¢ä¸€ä¸ªcookiesï¼Œå…¨å±€cookiesåˆ™æ˜¯æ‰€æœ‰è®¿å®¢ä¸€ä¸ªcookiesï¼Œè‡ªå®šä¹‰cookiesåˆ™cookieså°†ä¸ä¼šå˜åŒ–')
 					->e();
-			w('text')->set('name','×Ô¶¨ÒåCOOKIES')
+			w('text')->set('name','è‡ªå®šä¹‰COOKIES')
 					->set('key','diyCookies')
 					->set('value',d('config')->get('diyCookies'))
-					->set('tipe','¡°COOKIESÉèÖÃ¡±Ñ¡Ïî±ØĞëÑ¡Ôñ¡°×Ô¶¨Òåcookies¡±²ÅÄÜÉúĞ§')
+					->set('tipe','â€œCOOKIESè®¾ç½®â€é€‰é¡¹å¿…é¡»é€‰æ‹©â€œè‡ªå®šä¹‰cookiesâ€æ‰èƒ½ç”Ÿæ•ˆ')
 					->e();
 		?>
 			
 		<br>
-		<h2 class="section-header">×Ô¶¨Òåä¯ÀÀÆ÷±êÊ¶(agent)</h2>
+		<h2 class="section-header">è‡ªå®šä¹‰æµè§ˆå™¨æ ‡è¯†(agent)</h2>
 		<?php
-			w('select')->set('name','Î±Ôìagent')
+			w('select')->set('name','ä¼ªé€ agent')
 					->set('key','agent')
 					->set('value',d('config')->get('agent'))
-					->set('options',array('Ê¹ÓÃ¿Í»§¶Ëagent'=>'0','²»Î±Ôì'=>'1','×Ô¶¨Òåagent'=>'2',))
-					->set('tipe','Õâ¸ö¿ÉÒÔÈÃÊÜ·Ã·şÎñÆ÷Ê¶±ğÊÇIE¡¢firefox»òÕßÊÖ»ú·ÃÎÊ£¬½¨ÒéÉèÖÃÎª¡°Ê¹ÓÃ¿Í»§¶Ëagent¡±')
+					->set('options',array('ä½¿ç”¨å®¢æˆ·ç«¯agent'=>'0','ä¸ä¼ªé€ '=>'1','è‡ªå®šä¹‰agent'=>'2',))
+					->set('tipe','è¿™ä¸ªå¯ä»¥è®©å—è®¿æœåŠ¡å™¨è¯†åˆ«æ˜¯IEã€firefoxæˆ–è€…æ‰‹æœºè®¿é—®ï¼Œå»ºè®®è®¾ç½®ä¸ºâ€œä½¿ç”¨å®¢æˆ·ç«¯agentâ€')
 					->e();
-			w('text')->set('name','×Ô¶¨Òåagent')
+			w('text')->set('name','è‡ªå®šä¹‰agent')
 					->set('key','diyAgent')
 					->set('value',d('config')->get('diyAgent'))
-					->set('tipe','¡°Î±Ôìagent¡±Ñ¡Ïî±ØĞëÑ¡Ôñ¡°×Ô¶¨Òåagent¡±²Å»áÉúĞ§£¬Èç:<br>Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.1; Trident/6.0)')
+					->set('tipe','â€œä¼ªé€ agentâ€é€‰é¡¹å¿…é¡»é€‰æ‹©â€œè‡ªå®šä¹‰agentâ€æ‰ä¼šç”Ÿæ•ˆï¼Œå¦‚:<br>Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.1; Trident/6.0)')
 					->e();
 		?>
 		
 		<br>
-		<h2 class="section-header">×Ô¶¨ÒåÀ´Â·(referer)</h2>
+		<h2 class="section-header">è‡ªå®šä¹‰æ¥è·¯(referer)</h2>
 		<?php
-			w('select')->set('name','Î±Ôìreferer')
+			w('select')->set('name','ä¼ªé€ referer')
 					->set('key','referer')
 					->set('value',d('config')->get('referer'))
-					->set('options',array('×Ô¶¯Î±Ôì'=>'0','×Ô¶¨Òåreferer'=>'1'))
-					->set('tipe','×Ô¶¯Î±Ôì¿ÉÒÔ»¹Ô­Ô­Ê¼µÄreferer,Ê¹È«Õ¾¾µÏñ¿ÉÒÔÍêÃÀÍ»ÆÆ·ÀµÁÁ´')
+					->set('options',array('è‡ªåŠ¨ä¼ªé€ '=>'0','è‡ªå®šä¹‰referer'=>'1'))
+					->set('tipe','è‡ªåŠ¨ä¼ªé€ å¯ä»¥è¿˜åŸåŸå§‹çš„referer,ä½¿å…¨ç«™é•œåƒå¯ä»¥å®Œç¾çªç ´é˜²ç›—é“¾')
 					->e();
-			w('text')->set('name','×Ô¶¨Òåreferer')
+			w('text')->set('name','è‡ªå®šä¹‰referer')
 					->set('key','diyReferer')
 					->set('value',d('config')->get('diyReferer'))
-					->set('tipe','¡°Î±Ôìreferer¡±Ñ¡Ïî±ØĞëÑ¡Ôñ¡°×Ô¶¨Òåreferer¡±²Å»áÉúĞ§£¬Èç:http://www.baidu.com')
+					->set('tipe','â€œä¼ªé€ refererâ€é€‰é¡¹å¿…é¡»é€‰æ‹©â€œè‡ªå®šä¹‰refererâ€æ‰ä¼šç”Ÿæ•ˆï¼Œå¦‚:http://www.baidu.com')
 					->e();
 		?>
 		
 		<br>
-		<h2 class="section-header">×Ô¶¨ÒåIP</h2>
+		<h2 class="section-header">è‡ªå®šä¹‰IP</h2>
 		<?php
-			w('select')->set('name','Î±Ôìip')
+			w('select')->set('name','ä¼ªé€ ip')
 					->set('key','ip')
 					->set('value',d('config')->get('ip'))
-					->set('options',array('Ê¹ÓÃ·şÎñÆ÷ip'=>'0','Ê¹ÓÃ¿Í»§¶Ëip'=>'1','×Ô¶¨Òåip'=>'2',))
-					->set('tipe','×¢Òâ!!ÊÜ´úÀíÍøÕ¾ÈÔÈ»¿ÉÒÔµÃµ½·şÎñÆ÷µÄip,´ËÎª²»ÍêÈ«Î±Ôìip!!!')
+					->set('options',array('ä½¿ç”¨æœåŠ¡å™¨ip'=>'0','ä½¿ç”¨å®¢æˆ·ç«¯ip'=>'1','è‡ªå®šä¹‰ip'=>'2',))
+					->set('tipe','æ³¨æ„!!å—ä»£ç†ç½‘ç«™ä»ç„¶å¯ä»¥å¾—åˆ°æœåŠ¡å™¨çš„ip,æ­¤ä¸ºä¸å®Œå…¨ä¼ªé€ ip!!!')
 					->e();
-			w('text')->set('name','×Ô¶¨Òåip')
+			w('text')->set('name','è‡ªå®šä¹‰ip')
 					->set('key','diyIp')
 					->set('value',d('config')->get('diyIp'))
-					->set('tipe','Î±ÔìipÑ¡Ïî±ØĞëÑ¡Ôñ×Ô¶¨ÒåIP²ÅÄÜÉúĞ§,´ËÎª²»ÍêÈ«Î±Ôì!!!£¬Èç:127.0.0.1')
+					->set('tipe','ä¼ªé€ ipé€‰é¡¹å¿…é¡»é€‰æ‹©è‡ªå®šä¹‰IPæ‰èƒ½ç”Ÿæ•ˆ,æ­¤ä¸ºä¸å®Œå…¨ä¼ªé€ !!!ï¼Œå¦‚:127.0.0.1')
 					->e();
 		?>
-			<input type="submit" class="m-button" value="±£´æ¸ß¼¶ÉèÖÃ" id="submit">
+			<input type="submit" class="m-button" value="ä¿å­˜é«˜çº§è®¾ç½®" id="submit">
 		</form>
 	</div>
 <?php include tpl('footer');?>

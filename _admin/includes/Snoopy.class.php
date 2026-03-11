@@ -998,6 +998,7 @@ class Snoopy
 		if(!empty($this->user) || !empty($this->pass))	
 			$headers[] = "Authorization: BASIC ".base64_encode($this->user.":".$this->pass);
 			
+		$cmdline_params = '';
 		for($curr_header = 0; $curr_header < count($headers); $curr_header++) {
 			$safer_header = strtr( $headers[$curr_header], "\"", " " );
 			$cmdline_params .= " -H \"".$safer_header."\"";
@@ -1023,11 +1024,12 @@ class Snoopy
 		//exit();
 		if(!empty($body)){
 			//exit();
-			//ÉèÖÃĞÎÊ½ÎªPOST      
+			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê½ÎªPOST      
     		curl_setopt($curl,CURLOPT_POSTFIELDS, $body);
-    		//ÉèÖÃPost²ÎÊı
+    		//ï¿½ï¿½ï¿½ï¿½Postï¿½ï¿½ï¿½ï¿½
     		curl_setopt($curl,CURLOPT_RETURNTRANSFER,1);  	
 		}
+		$cookie = '';
 		if(!empty($this->cookies))
 		foreach($this->cookies as $key => $value){
 			$cookie .=$key.'='.$value.';';
@@ -1048,6 +1050,9 @@ class Snoopy
 		$headerfile = tempnam($temp_dir, "sno");
 		$datafile = tempnam($temp_dir, "snd");
 		
+		// åˆå§‹åŒ– $result_headers å˜é‡ä¸ºä¸€ä¸ªç©ºæ•°ç»„
+		$result_headers = array();
+		
 		exec($this->curl_path." -3 -k -D \"$headerfile\"".$cmdline_params." \"".escapeshellcmd($URI)."\" > $datafile",$results,$return);
 
 		if($return)
@@ -1064,6 +1069,11 @@ class Snoopy
 						
 		$this->_redirectaddr = false;
 		unset($this->headers);
+		
+		// ç¡®ä¿ $result_headers æ˜¯ä¸€ä¸ªæ•°ç»„
+		if(!is_array($result_headers)){
+			$result_headers = array();
+		}
 		
 		for($currentHeader = 0; $currentHeader < count($result_headers); $currentHeader++)
 		{

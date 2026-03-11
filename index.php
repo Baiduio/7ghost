@@ -2,7 +2,11 @@
 	//error_reporting(0);
 	require './_admin/init.php';
 	//读取配置信息
-	$config  = d('config')->get();
+	$configObj = d('config');
+	if (!$configObj) {
+		die('配置文件加载失败');
+	}
+	$config  = $configObj->get();
 	
 	//当前根url
 	$rootUrl = 'http://'.$_SERVER['HTTP_HOST'].siteUri();
@@ -70,9 +74,6 @@
 			$snoopy->referer = $config['diyReferer'];;
 			break;
 		default://自动伪造
-			$HTTP_REFERER="";
-			$snoopy->referer = str_replace('rootUrl',$config['host'],$_SERVER[$HTTP_REFERER]);
-			if($snoopy->referer==$_SERVER[$HTTP_REFERER])
 			$snoopy->referer = '';
 			break;
 	}

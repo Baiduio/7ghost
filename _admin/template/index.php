@@ -2,21 +2,21 @@
 <?php include tpl('menu');?>
 	<div class="main">
 		<dl>
-			<h2 class="section-header">»ù±¾ÐÅÏ¢</h2>
-			<dt>ÐèÒª´úÀíµÄÍøÖ·:</dt> 
+			<h2 class="section-header">åŸºæœ¬ä¿¡æ¯</h2>
+			<dt>éœ€è¦ä»£ç†çš„ç½‘å€:</dt> 
 			<dd><input type="text" size="32" value="2563323" name="name"></dd>
-			<dd class='tipe'>ÕûÕ¾ÐèÒª·´Ïò´úÀíµÄÍøÖ·£¬Èç:http://www.baidu.com/</dd>
+			<dd class='tipe'>æ•´ç«™éœ€è¦åå‘ä»£ç†çš„ç½‘å€ï¼Œå¦‚:http://www.baidu.com/</dd>
 		</dl>
 		<?php
-			w('text')->set('name','ÐèÒª´úÀíµÄÍøÖ·')
+			w('text')->set('name','éœ€è¦ä»£ç†çš„ç½‘å€')
 					->set('key','host')
-					->set('tipe','ÕûÕ¾ÐèÒª·´Ïò´úÀíµÄÍøÖ·£¬Èç:http://www.baidu.com/')
+					->set('tipe','æ•´ç«™éœ€è¦åå‘ä»£ç†çš„ç½‘å€ï¼Œå¦‚:http://www.baidu.com/')
 					->e();
 		?>
 		<dl> 
-			<dt>Õ¾µãÃû³Æ:</dt> 
+			<dt>ç«™ç‚¹åç§°:</dt> 
 			<dd><textarea class="tarea" cols="50" name="script" rows="5">123212323</textarea></dd>
-			<dd class='tipe'>Õ¾µãÃû³Æ£¬½«ÏÔÊ¾ÔÚä¯ÀÀÆ÷´°¿Ú±êÌâµÈÎ»ÖÃ</dd>
+			<dd class='tipe'>ç«™ç‚¹åç§°ï¼Œå°†æ˜¾ç¤ºåœ¨æµè§ˆå™¨çª—å£æ ‡é¢˜ç­‰ä½ç½®</dd>
 		</dl>
 	</div>
 <?php include tpl('footer');?>

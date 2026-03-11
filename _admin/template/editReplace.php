@@ -2,28 +2,28 @@
 <?php include tpl('menu');?>
 	<div class="main">
 			<form action="" method="POST">
-				<h2 class="section-header">Ìí¼ÓÄÚÈÝÌæ»»</h2>
+				<h2 class="section-header">æ·»åŠ å†…å®¹æ›¿æ¢</h2>
 				<input type="hidden" name='key' value='<?php _e($key)?>'></input>
 				<?php
-					w('text')->set('name','Ãû³Æ')
+					w('text')->set('name','åç§°')
 							->set('key','name')
 							->set('value',$item['name'])
-							->set('tipe','½ö·½±ã¼ÇÒä')
+							->set('tipe','ä»…æ–¹ä¾¿è®°å¿†')
 							->e();
 			
-					w('text')->set('name','²éÕÒÄÚÈÝ')
+					w('text')->set('name','æŸ¥æ‰¾å†…å®¹')
 							->set('key','seach')
 							->set('value',$item['seach'])
-							->set('tipe','²éÕÒÐèÒªÌæ»»µÄÄÚÈÝ,ÎªÕýÔòÆ¥Åä')
+							->set('tipe','æŸ¥æ‰¾éœ€è¦æ›¿æ¢çš„å†…å®¹,ä¸ºæ­£åˆ™åŒ¹é…')
 							->e();
 					
-					w('textarea')->set('name','Ìæ»»Îª')
+					w('textarea')->set('name','æ›¿æ¢ä¸º')
 							->set('key','replace')
 							->set('value',$item['replace'])
-							->set('tipe','½«²éÕÒµ½µÄÄÚÈÝÌæ»»Îª')
+							->set('tipe','å°†æŸ¥æ‰¾åˆ°çš„å†…å®¹æ›¿æ¢ä¸º')
 							->e();
 				?>
-				<input type="submit" class="m-button" value="Ìá½»" id="submit">
+				<input type="submit" class="m-button" value="æäº¤" id="submit">
 			</form>
 	</div>
 <?php include tpl('footer');?>

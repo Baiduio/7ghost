@@ -4,6 +4,10 @@ class widget{
 	private $_type='text';
 	private $_info;
 	
+	function __construct($type){
+		$this->_type = $type;
+	}
+	
 	function _widget($type){
 		$this->_type = $type;
 	}
