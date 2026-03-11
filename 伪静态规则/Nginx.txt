@@ -1,4 +1,8 @@
-location /
-{
-try_files $uri $uri/ /index.php?$args;
+location / {
+    try_files $uri $uri/ /index.php?$args;
+}
+
+# 确保后台管理路径也能正常访问
+location /_admin {
+    try_files $uri $uri/ /_admin/index.php?$args;
 }

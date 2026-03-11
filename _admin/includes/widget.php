@@ -13,16 +13,16 @@ class widget{
 		return $this;
 	}
 	
-	//×ª»»³É×Ö·û´®
+	//è½¬æ¢ä¸ºå­—ç¬¦ä¸²
 	function __tostring(){
-		ob_star();
+		ob_start();
 		$this->e();
 		$out = ob_get_contents();
 		ob_end_clean();
 		return $out;
 	}
 	
-	//Êä³ö
+	//æ˜¾ç¤º
 	function e(){
 		$info = $this->_info;
 		include(ADIR.'template/_widget/'.$this->_type.'.php');

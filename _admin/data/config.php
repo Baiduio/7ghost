@@ -1,7 +1,7 @@
 <?php return array (
   'user' => 'test',
   'password' => '123456',
-  'host' => 'https://kns.cnki.net/',
+  'host' => 'https://image.so.com/',
   'replaceDomain' => '0',
   'relativeHTML' => '0',
   'relativeCSS' => '0',

@@ -16,7 +16,7 @@ function w($name){
 function d($name){
 	require_once(ADIR.'includes/data.php');
 	static $instance=array();
-    if (@is_null($instance[$name]) && preg_match("/^[a-z|0-9|A-Z|_]+$/",$name)){
+    if (!isset($instance[$name]) && preg_match("/^[a-z|0-9|A-Z|_]+$",$name)){
     	return $instance[$name] = new data($name);
     }
     return $instance[$name];
@@ -59,19 +59,19 @@ function send_header($headers,$cookies=1){
 	$return;
 	if(is_array($headers))
 	foreach($headers as $value){
-		$arr=split(": ",$value);
+		$arr=explode(": ",$value);
 		if($arr[0]!="Set-Cookie"){
 			if($arr[0]!="Transfer-Encoding")
 			header($value);
 		}else{
 			if($cookies){
-				$arr=split(";",$arr[1]);
-				$arr_value = split("=",$arr[0]);
+				$arr=explode(";",$arr[1]);
+				$arr_value = explode("=",$arr[0]);
 				setcookie($arr_value[0],$arr_value[1]);
 			}
 		}
 		if($arr[0]=="Content-Type"){
-			$arr=split("; charset=",$arr[1]);
+			$arr=explode("; charset=",$arr[1]);
 			$arr[0] = trim($arr[0]);
 			$return = $arr;
 		}
@@ -82,7 +82,7 @@ function get_header($headers,$name=NULL){
 	$return=array();
 	if(is_array($headers))
 	foreach($headers as $value){
-		$arr=split(": ",$value);
+		$arr=explode(": ",$value);
 		if(strtolower($arr[0])==strtolower($name)){
 			return $arr[1];
 		}
@@ -95,10 +95,10 @@ function get_cookies($headers){
 	$cookies = "";
 	if(is_array($headers))
 	foreach($headers as $value){
-		$arr=split(": ",$value);
+		$arr=explode(": ",$value);
 		if($arr[0]=="Set-Cookie"){
-			$arr=split(";",$arr[1]);
-			$arr_value = split("=",$arr[0]);
+			$arr=explode(";",$arr[1]);
+			$arr_value = explode("=",$arr[0]);
 			$cookies[$arr_value[0]]=$arr_value[1];
 		}
 	}
@@ -109,9 +109,14 @@ function save_cache($name,$data){
 	file_put_contents('./cache/'.$name.'.php',"<?php return '".serialize($data)."';");
 }
 function get_cache($name){
-	if(is_null($_SERVER['cache'][$name])){
-		$str = @include('./cache/'.$name.'.php');
-		$_SERVER['cache'][$name] = unserialize($str);
+	if(!isset($_SERVER['cache'][$name])){
+		$cacheFile = './cache/'.$name.'.php';
+		if (file_exists($cacheFile)) {
+			$str = include($cacheFile);
+			$_SERVER['cache'][$name] = unserialize($str);
+		} else {
+			$_SERVER['cache'][$name] = null;
+		}
 	}
 	return $_SERVER['cache'][$name];
 }
@@ -128,9 +133,9 @@ function form2array($html){
 	return $arr;
 }
 function get_ip(){ 
-    if (@$_SERVER['HTTP_CLIENT_IP'] && $_SERVER['HTTP_CLIENT_IP']!='unknown') {   
+    if (isset($_SERVER['HTTP_CLIENT_IP']) && $_SERVER['HTTP_CLIENT_IP']!='unknown') {   
         $ip = $_SERVER['HTTP_CLIENT_IP'];   
-    } elseif (@$_SERVER['HTTP_X_FORWARDED_FOR'] && $_SERVER['HTTP_X_FORWARDED_FOR']!='unknown') {   
+    } elseif (isset($_SERVER['HTTP_X_FORWARDED_FOR']) && $_SERVER['HTTP_X_FORWARDED_FOR']!='unknown') {   
         $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];   
     } else {   
         $ip = $_SERVER['REMOTE_ADDR'];   

@@ -10,7 +10,7 @@
 	$uri = substr($_SERVER['REQUEST_URI'],strlen(siteUri()));
 	//匹配自定义页面，合并参数
 	foreach($config['pages'] as $page){
-		if(@ereg($page['uri'],$uri)){
+		if(preg_match('/'.$page['uri'].'/',$uri)){
 			if(!empty($page['replaces'])){
 				$config['replaces'] = array_merge($config['replaces'],$page['replaces']);
 			}
